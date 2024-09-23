@@ -10,9 +10,10 @@ jobs:
     runs-on: ubuntu-latest
     if: github.event.pull_request.merged == true
     steps:
-      - name: Add label to merged pull request
+      - name: Add labels to merged pull request
         uses: actions-ecosystem/action-add-labels@v1
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           labels: 'merged, hacktoberfest-accepted'
+          repo: ${{ github.repository }}
           number: ${{ github.event.pull_request.number }}
