@@ -1,0 +1,18 @@
+name: Label Pull Request on Merge
+
+on:
+  pull_request:
+    types:
+      - closed
+
+jobs:
+  add-label-on-merge:
+    runs-on: ubuntu-latest
+    if: github.event.pull_request.merged == true
+    steps:
+      - name: Add label to merged pull request
+        uses: actions-ecosystem/action-add-labels@v1
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          labels: 'merged, hacktoberfest-accepted'
+          issue_number: ${{ github.event.pull_request.number }}
