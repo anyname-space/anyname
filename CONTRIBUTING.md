@@ -1,0 +1,79 @@
+# Contributing to anyname
+
+Thank you for your interest in contributing to anyname! Before making any changes, we kindly ask you to first discuss your proposed change via issues, discussions, or another method with the maintainers of this repository.
+
+Please also adhere to our [Code of Conduct](./code_of_conduct.md) when interacting with others.
+
+## Pull Request Process
+
+1. **Fork the repository**: Click on 'Fork' at the top right of the page.
+2. **Create a new branch**:
+
+   - Use a meaningful branch name such as `add-new-name` or `update-category`.
+
+     ```bash
+     git checkout -b your-branch-name
+     ```
+
+3. **Add your changes**:
+   - For **names**, navigate to the appropriate `/data/names/` file (one-word, two-words, three-words).
+   - For **categories**, edit the `/data/categories.md` file, or create a new one if necessary.
+4. **Update the README.md**: If your changes affect the structure, instructions, or usage of the project, make sure to update the README.md accordingly.
+5. **Create a pull request**:
+   - Push your changes to your branch and open a pull request.
+   - Add a clear and concise description of your changes.
+   - Ensure your PR passes all the checks before requesting a review.
+6. **Approval**: Your PR will be reviewed by the maintainers. If everything looks good, it will be merged!
+
+## Adding Names
+
+To add new names, follow these steps:
+
+1. **Fork this repository**: Click the 'Fork' button at the top-right of this page.
+2. **Create a new branch**: Use a meaningful name for your branch.
+
+   ```bash
+   git checkout -b add-new-name
+   ```
+
+3. **Add your name**:
+
+- Go to the `/data/names/` directory.
+- Select the appropriate file (one-word, two-words, or three-words).
+- Append your name following this format:
+
+  ```markdown
+  ## Category
+
+      Name
+      _Optional description or meaning_
+  ```
+
+- Don't forget to credit yourself with an optional contributor note at the end of the list!
+
+4. **Create a pull request**: Once you're done, push your branch and open a pull request. Make sure to explain what you’ve added in the description.
+
+## Adding or Updating Categories
+
+To add or update categories:
+
+1. Follow steps 1-2 above.
+2. Edit the `/data/categories.md` file and add your category, or update the existing ones if needed. Use this format:
+
+   ```markdown
+   ## Category Name
+
+   Description of the category.
+   ```
+
+3. Make sure your new category aligns with existing names.
+4. Open a pull request following the process mentioned above.
+
+## Guidelines
+
+- **Unique Names**: Make sure the names or categories you're adding are unique.
+- **Format**: Follow the format as outlined above.
+- **Respect Existing Work**: Avoid unnecessary duplicates or changes unless discussed.
+- **Have Fun!**: This project is a collaborative effort, so let's keep it positive and inclusive.
+
+Thank you for contributing to anyname! 😊
