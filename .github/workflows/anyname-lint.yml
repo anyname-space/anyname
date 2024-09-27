@@ -1,4 +1,4 @@
-name: Validate Markdown Format
+name: Anyname Lint
 
 on:
   pull_request:
@@ -22,11 +22,17 @@ jobs:
             fi
 
             # Extract Name and Name Type
-            name=$(grep -E "\*\*Name:\*\*" $file | sed 's/\*\*Name:\*\* //')
+            name=$(grep -E "\*\*Name:\*\*" $file | sed 's/\*\*Name:\*\* //' | tr -d '\n')
             name_type=$(grep -E "\*\*Name Type:\*\*" $file | sed 's/\*\*Name Type:\*\* //')
 
             # Count words in the name
             word_count=$(echo $name | wc -w)
+
+            # Check if Name contains only letters (no numbers or special characters)
+            if [[ ! "$name" =~ ^[a-zA-Z\ ]+$ ]]; then
+              echo "Invalid Name in $file: Name contains invalid characters. Only letters are allowed."
+              exit 1
+            fi
 
             # Check if word count matches name type
             case $name_type in
