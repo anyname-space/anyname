@@ -17,7 +17,7 @@ Please also adhere to our [Code of Conduct](./code_of_conduct.md) when interacti
 
 3. **Add your changes**:
    - For **names**, navigate to the appropriate `/data/names/` file (one-word, two-words, three-words).
-   - For **categories**, edit the `/data/categories.md` file, or create a new one if necessary.
+   - For **categories**, edit the `/data/categories.json` file, or create a new one if necessary.
 4. **Update the README.md**: If your changes affect the structure, instructions, or usage of the project, make sure to update the README.md accordingly.
 5. **Create a pull request**:
    - Push your changes to your branch and open a pull request.
@@ -39,17 +39,25 @@ To add new names, follow these steps:
 3. **Add your name**:
 
 - Go to the `/data/names/` directory.
-- Select the appropriate file (one-word, two-words, or three-words).
+- Select the appropriate folder, ex: one word name `/data/names/1` etc.
+- Create file with Create a file with the name you will add in `snake_case` format, ex: `name.json`, `this_is_long_name.json`.
 - Append your name following this format:
 
-  ```markdown
-  ## Category
-
-      Name
-      _Optional description or meaning_
+  ```json
+  {
+    "name": "My Name",
+    "name_type": "1",
+    "gender": "male",
+    "origin": "Indonesia",
+    "category": ["Traditional", "Popular"],
+    "contributor": {
+      "github_username": "your_github_username"
+    },
+    "meaning": "Brave"
+  }
   ```
 
-- Don't forget to credit yourself with an optional contributor note at the end of the list!
+- Don't forget to credit yourself by adding your GitHub username in the `contributor` field!
 
 4. **Create a pull request**: Once you're done, push your branch and open a pull request. Make sure to explain what you’ve added in the description.
 
@@ -58,12 +66,12 @@ To add new names, follow these steps:
 To add or update categories:
 
 1. Follow steps 1-2 above.
-2. Edit the `/data/categories.md` file and add your category, or update the existing ones if needed. Use this format:
+2. Edit the `/data/categories.json` file and add your category, or update the existing ones if needed. Use this format:
 
-   ```markdown
-   ## Category Name
-
-   Description of the category.
+   ```json
+   {
+     "category": ["Traditional", "Modern", "Unique", "Popular", "Mythical"]
+   }
    ```
 
 3. Make sure your new category aligns with existing names.

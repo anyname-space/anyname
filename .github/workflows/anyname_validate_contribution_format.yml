@@ -1,0 +1,57 @@
+name: Validate JSON Format
+
+on:
+  pull_request:
+    branches:
+      - main
+      
+permissions:
+  pull-requests: write
+  issues: write
+  
+jobs:
+  validate-json:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v2
+
+      - name: Validate JSON Files
+        id: validate
+        run: |
+          invalid_files=()
+          for dir in data/names/*; do
+            if [ -d "$dir" ]; then
+              for file in "$dir"/*.json; do
+                if [ -f "$file" ]; then
+                  if ! jq -e 'has("name") and has("name_type") and has("gender") and has("origin") and has("category") and has("contributor") and has("meaning")' "$file" >/dev/null; then
+                    invalid_files+=("$(basename "$file")")
+                  fi
+                fi
+              done
+            fi
+          done
+
+          if [ ${#invalid_files[@]} -ne 0 ]; then
+            echo "Invalid files: ${invalid_files[*]}"
+            echo "status=invalid" >> $GITHUB_ENV
+          else
+            echo "status=valid" >> $GITHUB_ENV
+          fi
+
+      - name: Label Pull Request
+        if: env.status == 'invalid'
+        run: |
+          echo "Adding 'invalid' label to the pull request..."
+          response=$(curl -s -X POST \
+            -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
+            -H "Accept: application/vnd.github.v3+json" \
+            https://api.github.com/repos/${{ github.repository }}/issues/${{ github.event.pull_request.number }}/labels \
+            -d '{"labels": ["invalid"]}')
+          echo "Response: $response"
+
+      - name: Prevent Merge for Invalid PR
+        if: env.status == 'invalid'
+        run: |
+          echo "This pull request cannot be merged due to invalid JSON files."
+          exit 1
