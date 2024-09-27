@@ -39,16 +39,24 @@ jobs:
             echo "status=valid" >> $GITHUB_ENV
           fi
 
-      - name: Label Pull Request
-        if: env.status == 'invalid'
+      - name: Manage Pull Request Labels
         run: |
-          echo "Adding 'invalid' label to the pull request..."
-          response=$(curl -s -X POST \
-            -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
-            -H "Accept: application/vnd.github.v3+json" \
-            https://api.github.com/repos/${{ github.repository }}/issues/${{ github.event.pull_request.number }}/labels \
-            -d '{"labels": ["invalid"]}')
-          echo "Response: $response"
+          if [ "${{ env.status }}" == "invalid" ]; then
+            echo "Adding 'invalid' label to the pull request..."
+            response=$(curl -s -X POST \
+              -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
+              -H "Accept: application/vnd.github.v3+json" \
+              https://api.github.com/repos/${{ github.repository }}/issues/${{ github.event.pull_request.number }}/labels \
+              -d '{"labels": ["invalid"]}')
+            echo "Response: $response"
+          else
+            echo "Removing 'invalid' label from the pull request..."
+            response=$(curl -s -X DELETE \
+              -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
+              -H "Accept: application/vnd.github.v3+json" \
+              https://api.github.com/repos/${{ github.repository }}/issues/${{ github.event.pull_request.number }}/labels/invalid)
+            echo "Response: $response"
+          fi
 
       - name: Prevent Merge for Invalid PR
         if: env.status == 'invalid'
