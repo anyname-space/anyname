@@ -1,75 +1,61 @@
-name: Validate Contribution Format
+name: Validate JSON Format
 
 on:
   pull_request:
-    paths:
-      - 'data/names/**'  # Memantau semua perubahan dalam folder names
+    branches:
+      - main
 
 jobs:
-  validate:
+  validate-json:
     runs-on: ubuntu-latest
-
     steps:
-      - name: Checkout code
+      - name: Checkout Code
         uses: actions/checkout@v2
 
-      - name: Validate Contribution Structure
+      - name: Validate JSON Files
         id: validate
         run: |
-          # Mengaktifkan nullglob agar wildcard tidak mengembalikan nama file jika tidak ada
-          shopt -s nullglob
-
-          validate_json() {
-            local json_file="$1"
-            # Validasi format JSON
-            if ! jq empty "$json_file"; then
-              echo "Invalid JSON format in $json_file"
-              exit 1
+          invalid_files=()
+          for dir in data/names/*; do
+            if [ -d "$dir" ]; then
+              for file in "$dir"/*.json; do
+                if [ -f "$file" ]; then
+                  jq -e '{
+                    name: .name,
+                    name_type: .name_type,
+                    gender: .gender,
+                    origin: .origin,
+                    category: .category,
+                    contributor: .contributor,
+                    meaning: .meaning
+                  }' "$file" >/dev/null 2>&1
+                  if [ $? -ne 0 ]; then
+                    invalid_files+=("$(basename "$file")")
+                  fi
+                fi
+              done
             fi
-
-            # Validasi struktur JSON
-            expected_keys=("name" "name_type" "gender" "origin" "category" "contributor" "meaning")
-            json_keys=$(jq -r 'keys[]' "$json_file")
-
-            for key in "${expected_keys[@]}"; do
-              if ! echo "$json_keys" | grep -q "$key"; then
-                echo "Missing expected key: $key in $json_file"
-                exit 1
-              fi
-            done
-          }
-
-          # Memeriksa struktur folder dan validasi setiap file JSON
-          for name_type in {1,2,3}; do
-            folder="data/names/$name_type"
-
-            # Memeriksa apakah folder ada
-            if [ ! -d "$folder" ]; then
-              echo "Missing directory: $folder"
-              exit 1
-            fi
-
-            # Memeriksa dan memvalidasi setiap file JSON di dalam direktori
-            for json_file in "$folder"/*.json; do
-              validate_json "$json_file"
-            done
           done
 
-          echo "All checks passed."
+          if [ ${#invalid_files[@]} -ne 0 ]; then
+            echo "Invalid files: ${invalid_files[*]}"
+            echo "status=invalid" >> $GITHUB_ENV
+          else
+            echo "status=valid" >> $GITHUB_ENV
+          fi
 
-      - name: Add invalid label
-        if: failure()  # Menjalankan langkah ini hanya jika validasi gagal
-        uses: actions/github-script@v5
-        with:
-          script: |
-            const { context } = require('@actions/github');
-            const { owner, repo } = context.repo;
-            const issue_number = context.payload.pull_request.number;
+      - name: Label Pull Request
+        if: env.status == 'invalid'
+        run: |
+          echo "Adding 'invalid' label to the pull request..."
+          curl -X POST \
+            -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
+            -H "Accept: application/vnd.github.v3+json" \
+            https://api.github.com/repos/${{ github.repository }}/issues/${{ github.event.pull_request.number }}/labels \
+            -d '{"labels": ["invalid"]}'
 
-            // Menambahkan label "invalid" pada pull request
-            await github.issues.addLabels({
-              owner,
-              repo,
-              issue_number,
-              labels: ['invalid']
-            });
+      - name: Prevent Merge for Invalid PR
+        if: env.status == 'invalid'
+        run: |
+          echo "This pull request cannot be merged due to invalid JSON files."
+          exit 1
