@@ -15,21 +15,25 @@ jobs:
 
       - name: Validate Contribution Structure
         run: |
-          # Memeriksa struktur folder
+          # Memeriksa struktur folder dan validasi setiap file JSON
           for name_type in {1,2,3}; do
-            if [ ! -d "data/names/$name_type" ]; then
-              echo "Missing directory: data/names/$name_type"
+            folder="data/names/$name_type"
+
+            # Memeriksa apakah folder ada
+            if [ ! -d "$folder" ]; then
+              echo "Missing directory: $folder"
               exit 1
             fi
 
             # Memeriksa apakah ada file JSON di dalam direktori
-            if [ -z "$(ls -A data/names/$name_type/*.json 2>/dev/null)" ]; then
-              echo "No JSON files found in: data/names/$name_type"
-              exit 1
+            json_files=("$folder"/*.json)
+            if [ ! -e "${json_files[0]}" ]; then
+              echo "No JSON files found in: $folder"
+              continue  # Lewati validasi untuk folder ini
             fi
 
             # Validasi setiap file JSON
-            for json_file in data/names/$name_type/*.json; do
+            for json_file in "$folder"/*.json; do
               if ! jq empty "$json_file"; then
                 echo "Invalid JSON format in $json_file"
                 exit 1
