@@ -15,6 +15,29 @@ jobs:
 
       - name: Validate Contribution Structure
         run: |
+          # Mengaktifkan nullglob agar wildcard tidak mengembalikan nama file jika tidak ada
+          shopt -s nullglob
+
+          validate_json() {
+            local json_file="$1"
+            # Validasi format JSON
+            if ! jq empty "$json_file"; then
+              echo "Invalid JSON format in $json_file"
+              exit 1
+            fi
+
+            # Validasi struktur JSON
+            expected_keys=("name" "name_type" "gender" "origin" "category" "contributor" "meaning")
+            json_keys=$(jq -r 'keys[]' "$json_file")
+
+            for key in "${expected_keys[@]}"; do
+              if ! echo "$json_keys" | grep -q "$key"; then
+                echo "Missing expected key: $key in $json_file"
+                exit 1
+              fi
+            done
+          }
+
           # Memeriksa struktur folder dan validasi setiap file JSON
           for name_type in {1,2,3}; do
             folder="data/names/$name_type"
@@ -25,30 +48,9 @@ jobs:
               exit 1
             fi
 
-            # Memeriksa apakah ada file JSON di dalam direktori
-            json_files=("$folder"/*.json)
-            if [ ! -e "${json_files[0]}" ]; then
-              echo "No JSON files found in: $folder"
-              continue  # Lewati validasi untuk folder ini
-            fi
-
-            # Validasi setiap file JSON
+            # Memeriksa dan memvalidasi setiap file JSON di dalam direktori
             for json_file in "$folder"/*.json; do
-              if ! jq empty "$json_file"; then
-                echo "Invalid JSON format in $json_file"
-                exit 1
-              fi
-
-              # Validasi struktur JSON
-              expected_keys=("name" "name_type" "gender" "origin" "category" "contributor" "meaning")
-              json_keys=$(jq -r 'keys[]' "$json_file")
-
-              for key in "${expected_keys[@]}"; do
-                if ! echo "$json_keys" | grep -q "$key"; then
-                  echo "Missing expected key: $key in $json_file"
-                  exit 1
-                fi
-              done
+              validate_json "$json_file"
             done
           done
 
