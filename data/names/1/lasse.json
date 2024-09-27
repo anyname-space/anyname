@@ -1,0 +1,11 @@
+{
+  "name": "Lasse",
+  "name_type": "1",
+  "gender": "male",
+  "origin": "Scandinavia",
+  "category": ["Traditional", "Popular"],
+  "contributor": {
+    "github_username": "rawstream"
+  },
+  "meaning": "Crowned with laurels"
+}

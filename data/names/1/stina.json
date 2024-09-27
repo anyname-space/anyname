@@ -1,0 +1,11 @@
+{
+  "name": "Stina",
+  "name_type": "1",
+  "gender": "female",
+  "origin": "Scandinavia",
+  "category": ["Traditional", "Popular"],
+  "contributor": {
+    "github_username": "rawstream"
+  },
+  "meaning": "Christian"
+}
