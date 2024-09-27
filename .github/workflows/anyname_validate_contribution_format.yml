@@ -4,6 +4,10 @@ on:
   pull_request:
     branches:
       - main
+      
+permissions:
+  pull-requests: write
+  issues: write
 
 jobs:
   validate-json:
