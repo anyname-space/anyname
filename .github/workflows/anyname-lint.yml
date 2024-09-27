@@ -1,4 +1,4 @@
-name: Anyname Lint
+name: Validate Markdown Format
 
 on:
   pull_request:
@@ -21,8 +21,8 @@ jobs:
               exit 1
             fi
 
-            # Extract Name and Name Type
-            name=$(grep -E "\*\*Name:\*\*" $file | sed 's/\*\*Name:\*\* //' | tr -d '\n')
+            # Extract Name and Name Type, removing newlines in Name
+            name=$(grep -E "\*\*Name:\*\*" $file -A 1 | sed 's/\*\*Name:\*\* //' | tr -d '\n')
             name_type=$(grep -E "\*\*Name Type:\*\*" $file | sed 's/\*\*Name Type:\*\* //')
 
             # Count words in the name
