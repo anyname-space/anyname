@@ -1,5 +1,0 @@
-# Genders
-
-Male
-Female
-Unisex

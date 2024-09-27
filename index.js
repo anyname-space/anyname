@@ -4,15 +4,17 @@ document.addEventListener("DOMContentLoaded", () => {
   const genders = document.getElementById("genders-list");
   const nameTypes = document.getElementById("name-types-list");
 
-  const fetchMarkdown = async (path) => {
+  const fetchJson = async (path) => {
     const response = await fetch(path);
-    return await response.text();
+    const responseJson = await response.json();
+    console.log("fetchJson", { response: responseJson });
+    return responseJson;
   };
 
   const displayNames = (names) => {
     names.forEach((name) => {
       const listItem = document.createElement("li");
-      listItem.innerHTML = marked.parse(name);
+      listItem.innerHTML = name;
       namesList.appendChild(listItem);
     });
   };
@@ -23,28 +25,27 @@ document.addEventListener("DOMContentLoaded", () => {
     const gendersArray = [];
     const nameTypesArray = [];
 
-    const categoryList = ["1_word", "2_words", "3_words"];
+    const categoriesMarkdown = await fetchJson("data/category.json");
+    categoriesArray.push(...categoriesMarkdown.category);
+    const gendersMarkdown = await fetchJson("data/gender.json");
+    gendersArray.push(...gendersMarkdown.gender);
+    const nameTypesMarkdown = await fetchJson("data/name_type.json");
+    nameTypesArray.push(...nameTypesMarkdown.name_type);
 
-    const categoriesMarkdown = await fetchMarkdown("data/categories.md");
-    categoriesArray.push(...categoriesMarkdown.split("\n").slice(1));
-    const gendersMarkdown = await fetchMarkdown("data/genders.md");
-    gendersArray.push(...gendersMarkdown.split("\n").slice(1));
-    const nameTypesMarkdown = await fetchMarkdown("data/name_types.md");
-    nameTypesArray.push(...nameTypesMarkdown.split("\n").slice(1));
-
-    for (const category of categoryList) {
+    for (const category of nameTypesArray) {
       const response = await fetch(`data/names/${category}/`);
       const files = await response.text();
 
-      const regex = /<a href="(.+?\.md)">(.+?)<\/a>/g;
-      let match;
+      const regex = /href="(.+?\.json)/g;
+      let matches = files.match(regex);
 
-      while ((match = regex.exec(files)) !== null) {
-        const nameDetail = await fetchMarkdown(
-          `data/names/${category}/${match[2].trim()}`
-        );
-        console.log("name", { match, fileName: match[2].trim() });
-        names.push(nameDetail);
+      if (matches !== null) {
+        matches.forEach(async (matchData) => {
+          const matches = matchData.replace(/href="|\\/g, "");
+          const nameDetail = await fetchJson(matches);
+          console.log("name", { matchData, fileName: matches, nameDetail });
+          names.push(nameDetail);
+        });
       }
     }
 

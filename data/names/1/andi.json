@@ -1,0 +1,11 @@
+{
+  "name": "Andi Copy",
+  "name_type": "1",
+  "gender": "male",
+  "origin": "Indonesia",
+  "category": ["Traditional", "Popular"],
+  "contributor": {
+    "github_username": "arubaya"
+  },
+  "meaning": "Brave"
+}
