@@ -10,11 +10,11 @@ permissions:
   issues: write
 
 jobs:
-  add-label-on-merge:
+  add-label-on-open:
     runs-on: ubuntu-latest
-    if: github.event.pull_request.merged == true
+    if: github.event.pull_request.merged == false
     steps:
-      - name: Add labels to merged pull request
+      - name: Add labels to opened pull request
         uses: actions-ecosystem/action-add-labels@v1
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
