@@ -3,11 +3,10 @@ name: Label Pull Request on Open
 on:
   pull_request:
     types:
-      - opened
+      - open
 
 permissions:
   pull-requests: write
-  issues: write
 
 jobs:
   add-label-on-open:
@@ -20,5 +19,6 @@ jobs:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           labels: |
             hacktoberfest
+
           repo: ${{ github.repository }}
           number: ${{ github.event.pull_request.number }}
