@@ -1,0 +1,23 @@
+name: Label Hacktoberfest PRs
+
+on:
+  pull_request:
+    types: [opened]
+
+jobs:
+  label:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check if the PR is from a fork
+        id: check_fork
+        run: |
+          echo "::set-output name=is_fork::$(if [ '${{ github.event.pull_request.head.repo.fork }}' == 'true' ]; then echo 'true'; else echo 'false'; fi)"
+
+      - name: Label PR
+        if: steps.check_fork.outputs.is_fork == 'true'
+        uses: actions/add-labels@v1
+        with:
+          labels: |
+            hacktoberfest
+            opened
+            need-review
