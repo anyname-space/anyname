@@ -17,7 +17,7 @@ jobs:
       - name: Add labels to merged pull request
         uses: actions-ecosystem/action-add-labels@v1
         with:
-          github_token: ${{ secrets.PAT_TOKEN }}
+          github_token: ${{ secrets.GITHUB_TOKEN }}
           labels: |
             hacktoberfest-accepted
             merged
