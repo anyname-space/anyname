@@ -1,24 +1,21 @@
-name: Label Pull Request on Open
+name: Add Labels to Pull Request
 
 on:
   pull_request:
     types:
       - opened
 
-permissions:
-  pull-requests: write
-  issues: write
-
 jobs:
-  add-label-on-open:
+  add-label:
     runs-on: ubuntu-latest
-    if: github.event.pull_request.merged == false
     steps:
-      - name: Add labels to opened pull request
+      - name: Check if pull request is from a fork
+        if: github.event.pull_request.head.repo.full_name != github.repository
+        run: echo "Pull request is from a fork."
+      - name: Add labels if not from a fork
+        if: github.event.pull_request.head.repo.full_name == github.repository
         uses: actions-ecosystem/action-add-labels@v1
         with:
-          github_token: ${{ secrets.PAT_TOKEN }}
+          github_token: ${{ secrets.GITHUB_TOKEN }}
           labels: |
             hacktoberfest
-          repo: ${{ github.repository }}
-          number: ${{ github.event.pull_request.number }}
