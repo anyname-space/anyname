@@ -1,0 +1,12 @@
+{
+    "name": "Alex",
+    "name_type": "1",
+    "gender": "other",
+    "origin": "Greece",
+    "category": ["Popular"],
+    "contributor": {
+      "github_username": "your21staugust"
+    },
+    "meaning": "Protector"
+  }
+  
