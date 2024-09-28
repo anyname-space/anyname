@@ -1,0 +1,11 @@
+{
+  "name": "Lola",
+  "name_type": "1",
+  "gender": "female",
+  "origin": "Spain",
+  "category": ["Traditional", "Modern"],
+  "contributor": {
+    "github_username": "rawstream"
+  },
+  "meaning": "Sorrows"
+}
