@@ -5,7 +5,7 @@ on:
     types: closed
 
 permissions:
-  pull-requests: write
+  pull_request_target: write
 
 jobs:
   label_on_merge:
