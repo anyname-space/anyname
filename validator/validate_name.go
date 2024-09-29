@@ -56,6 +56,8 @@ func main() {
 		for _, file := range invalidFiles {
 			fmt.Println(file)
 		}
+		// Output for GitHub Actions to capture
+		fmt.Printf("::set-output name=invalidFiles::%s\n", strings.Join(invalidFiles, ", "))
 		os.Exit(1) // Exit with a non-zero status
 	} else {
 		fmt.Println("All files are valid.")

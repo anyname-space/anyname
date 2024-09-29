@@ -23,19 +23,26 @@ jobs:
       - name: Run validation
         id: validate_names
         run: |
-          go run validator/validate_name.go
-        continue-on-error: true 
+          go run validator/validate_names.go
+        continue-on-error: true  # Agar job tidak berhenti jika validasi gagal
 
       - name: Add label if invalid
-        if: steps.validate_names.outcome == 'failure' # add label
+        if: steps.validate_names.outcome == 'failure'  # Tambahkan label jika validasi gagal
         uses: actions-ecosystem/action-add-labels@v1
         with:
           labels: |
             invalid
 
       - name: Remove invalid label if fixed
-        if: steps.validate_names.outcome == 'success' # remove label 
+        if: steps.validate_names.outcome == 'success'  # Hapus label jika validasi berhasil
         uses: actions-ecosystem/action-remove-labels@v1
         with:
           labels: |
             invalid
+
+      - name: Comment on pull request if invalid files found
+        if: steps.validate_names.outcome == 'failure'  # Tambah komentar jika validasi gagal
+        run: |
+          gh pr comment ${{ github.event.pull_request.number }} --body "Invalid files found: ${{ steps.validate_names.outputs.invalidFiles }}"
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
