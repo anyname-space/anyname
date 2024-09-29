@@ -1,11 +1,11 @@
 name: Label on Pull Request Merge
 
 on:
-  pull_request:
+  pull_request_target:
     types: closed
 
 permissions:
-  pull_request_target: write
+  pull_requests: write
 
 jobs:
   label_on_merge:
