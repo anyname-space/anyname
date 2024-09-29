@@ -45,11 +45,9 @@ jobs:
         run: |
           # Ambil output validasi
           invalid_files="${{ steps.validate_names.outputs.validation_output }}"
-          # Ambil username penulis pull request
-          username="${{ github.event.pull_request.user.login }}"
-          # Format komentar dengan markdown dan tambahkan highlight untuk file invalid
-          formatted_comment="**@${username}, invalid files found:** ${invalid_files} **Please fix the issues above!**"
+          # Format komentar dengan highlight
+          formatted_comment="Invalid files found:\n\n\`\`\`text\n$invalid_files\n\`\`\`"
           # Kirim komentar ke pull request
-          gh pr comment ${{ github.event.pull_request.number }} --body "${formatted_comment}"
+          gh pr comment ${{ github.event.pull_request.number }} --body "$formatted_comment"
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
