@@ -1,11 +1,11 @@
-name: Validate Names
+name: Validate Names and Manage Labels
 
 on:
   pull_request_target:
     types: [opened, synchronize]
 
 permissions:
-  pull-requests: write    
+  pull-requests: write
 
 jobs:
   validate:
@@ -15,55 +15,27 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v2
 
-      - name: Check name files
-        id: check_names
+      - name: Set up Go
+        uses: actions/setup-go@v2
+        with:
+          go-version: '1.23.1'
+
+      - name: Run validation
+        id: validate_names
         run: |
-          # Function to check the number of words in a name
-          check_name_file() {
-            local file=$1
-            local expected_word_count=$2
-            local name=$(jq -r '.name' "$file")
-            local word_count=$(echo "$name" | wc -w)
-
-            if [[ $word_count -ne $expected_word_count ]]; then
-              echo "Invalid: $file contains $word_count words, expected $expected_word_count."
-              return 1
-            fi
-            return 0
-          }
-
-          # Loop through each folder and check the files
-          invalid_files=()
-          for folder in data/names/*; do
-            if [[ -d $folder ]]; then
-              expected_count=$(basename "$folder")
-              for json_file in "$folder"/*.json; do
-                if [[ -f $json_file ]]; then
-                  if ! check_name_file "$json_file" "$expected_count"; then
-                    invalid_files+=("$json_file")
-                  fi
-                fi
-              done
-            fi
-          done
-
-          # Output the results
-          if [[ ${#invalid_files[@]} -gt 0 ]]; then
-            echo "Invalid files found:"
-            for file in "${invalid_files[@]}"; do
-              echo "$file"
-            done
-            echo "::set-output name=invalid::true"
-          else
-            echo "::set-output name=invalid::false"
-          fi
+          go run validator/validate_names.go
+        continue-on-error: true 
 
       - name: Add label if invalid
-        if: steps.check_names.outputs.invalid == 'true'
-        run: |
-          echo "Adding label 'invalid' to the pull request."
-          curl -X POST \
-            -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
-            -H "Accept: application/vnd.github.v3+json" \
-            https://api.github.com/repos/${{ github.repository }}/issues/${{ github.event.pull_request.number }}/labels \
-            -d '{"labels":["invalid"]}'
+        if: failure() # add label
+        uses: actions-ecosystem/action-add-labels@v1
+        with:
+          labels: |
+            invalid
+
+      - name: Remove invalid label if fixed
+        if: success() # remove label 
+        uses: actions-ecosystem/action-remove-labels@v1
+        with:
+          labels: |
+            invalid
