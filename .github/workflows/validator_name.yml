@@ -23,7 +23,7 @@ jobs:
       - name: Run validation
         id: validate_names
         run: |
-          go run validator/validate_names.go
+          go run validator/validate_name.go
         continue-on-error: true 
 
       - name: Add label if invalid
