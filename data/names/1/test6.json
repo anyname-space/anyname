@@ -1,0 +1,11 @@
+{
+    "name": "testenam",
+    "name_type": "1",
+    "gender": "other",
+    "origin": "test",
+    "category": ["Popular"],
+    "contributor": {
+      "github_username": "your21staugust"
+    },
+    "meaning": "testenam"
+  }
