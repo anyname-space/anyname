@@ -48,8 +48,8 @@ jobs:
           # Ambil username penulis pull request
           username="${{ github.event.pull_request.user.login }}"
           # Format komentar dengan highlight dan tag user
-          formatted_comment="**@${username}, invalid files found:**\n\n\`\`\`text\n$invalid_files\n\`\`\`\n\n**Please fix the issues above!**"
-          # Kirim komentar ke pull request
-          gh pr comment ${{ github.event.pull_request.number }} --body "$formatted_comment"
+          formatted_comment="**@${username}, invalid files found:**\n\n\`\`\`text\n$invalid_files\n\`\`\`\n**Please fix the issues above!**"
+          # Mengganti newline dengan 'echo' untuk memastikan pemformatan
+          echo "$formatted_comment" | gh pr comment ${{ github.event.pull_request.number }} --body -
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
