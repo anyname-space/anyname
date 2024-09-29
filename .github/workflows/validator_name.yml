@@ -27,14 +27,14 @@ jobs:
         continue-on-error: true 
 
       - name: Add label if invalid
-        if: failure() # add label
+        if: steps.validate_names.outcome == 'failure' # add label
         uses: actions-ecosystem/action-add-labels@v1
         with:
           labels: |
             invalid
 
       - name: Remove invalid label if fixed
-        if: success() # remove label 
+        if: steps.validate_names.outcome == 'success' # remove label 
         uses: actions-ecosystem/action-remove-labels@v1
         with:
           labels: |
