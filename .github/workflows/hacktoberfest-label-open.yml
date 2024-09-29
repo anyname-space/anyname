@@ -1,32 +1,16 @@
-name: Label Hacktoberfest PRs
+name: Label on Pull Requests
 
 on:
   pull_request:
     types: [opened]
 
-permissions:
-  pull-requests: write
-
 jobs:
   label:
     runs-on: ubuntu-latest
+
     steps:
-      - name: Check if the PR is from a fork
-        id: check_fork
-        run: |
-          echo "::set-output name=is_fork::$(if [ '${{ github.event.pull_request.head.repo.fork }}' == 'true' ]; then echo 'true'; else echo 'false'; fi)"
-
-      - name: Label PR
-        if: steps.check_fork.outputs.is_fork == 'false' || github.event.pull_request.user.login == 'your-username' # Ganti 'your-username' dengan username Anda jika ingin juga memberi label pada PR dari repo asli
-        uses: actions/github-script@v6
+      - name: Add "hacktoberfest" and "opened" labels
+        uses: actions-ecosystem/action-add-labels@v1
         with:
-          script: |
-            const labels = ["hacktoberfest", "opened"];
-            const pr_number = context.payload.pull_request.number;
-            const octokit = github.getOctokit(process.env.GITHUB_TOKEN);
-
-            await octokit.rest.issues.addLabels({
-              ...context.repo,
-              issue_number: pr_number,
-              labels: labels,
-            });
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          labels: "hacktoberfest, opened"
