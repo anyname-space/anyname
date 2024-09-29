@@ -43,6 +43,13 @@ jobs:
       - name: Comment on pull request if invalid files found
         if: steps.validate_names.outcome == 'failure'  # Tambah komentar jika validasi gagal
         run: |
-          gh pr comment ${{ github.event.pull_request.number }} --body "Invalid files found: ${{ steps.validate_names.outputs.invalidFiles }}"
+          # Ambil output validasi
+          invalid_files="${{ steps.validate_names.outputs.validation_output }}"
+          # Ambil username penulis pull request
+          username="${{ github.event.pull_request.user.login }}"
+          # Format komentar dengan highlight dan tag user
+          formatted_comment="**@${username}, invalid files found:**\n\n\`\`\`text\n$invalid_files\n\`\`\`\n\n**Please fix the issues above!**"
+          # Kirim komentar ke pull request
+          gh pr comment ${{ github.event.pull_request.number }} --body "$formatted_comment"
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
