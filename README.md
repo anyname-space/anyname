@@ -1,3 +1,5 @@
+![anyname-gif](https://github.com/anyname-space/anyname/blob/main/assets/anyname-13.gif)
+
 # anyname
 
 Welcome to **anyname**, a project designed to curate and categorize a wide variety of names from all over the world. Whether you’re looking for a single-word name or a longer, more elaborate one, you’ll find something here. Plus, you can easily contribute new names or create your own categories!
