@@ -1,0 +1,29 @@
+name: Label on Pull Request Merge
+
+on:
+  pull_request:
+    types: closed
+
+permissions:
+  pull-requests: write
+
+jobs:
+  label_on_merge:
+    runs-on: ubuntu-latest
+    if: github.event.pull_request.merged == true  # Hanya berjalan jika PR dimerge
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Remove 'opened' label
+        uses: actions-ecosystem/action-remove-labels@v1
+        with:
+          labels: opened
+
+      - name: Add labels
+        uses: actions-ecosystem/action-add-labels@v1
+        with:
+          labels: |
+            closed
+            hacktoberfest-accepted
+            merged
