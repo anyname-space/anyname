@@ -46,5 +46,5 @@ func main() {
 	} else {
 		fmt.Println("Category file is valid.")
 	}
-	os.Exit(1)
+	//os.Exit(1)
 }
