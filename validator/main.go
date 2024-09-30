@@ -32,10 +32,11 @@ func main() {
 			fmt.Println(file)
 		}
 		// Output untuk GitHub Actions menangkap hasil
-		fmt.Printf("::set-output name=validation_output::%s\n", strings.Join(invalidFiles, ", "))
+		fmt.Printf("invalidFiles=%s\n", strings.Join(invalidFiles, ", "))
+		os.Setenv("INVALID_FILES", strings.Join(invalidFiles, ", ")) // Set environment variable
 	} else {
 		fmt.Println("All name files are valid.")
-		fmt.Printf("::set-output name=validation_output::\n") // Pastikan output kosong jika valid
+		os.Setenv("INVALID_FILES", "") // Set environment variable to empty if valid
 	}
 
 	// Validasi kategori JSON di data/categories.json
