@@ -53,6 +53,6 @@ jobs:
           invalid_files_cleaned=$(echo "$invalid_files" | tr -d '\n' | sed 's/^[ \t]*//;s/[ \t]*$//')  # Hapus newline dan spasi
 
           # Format komentar dengan highlight dan tag user
-          gh pr comment ${{ github.event.pull_request.number }} --body "**@${username}, invalid files found:**\n\n\`\`\`text\n${invalid_files_cleaned}\n\`\`\`\n\n**Please fix the issues above!**"
+          gh pr comment ${{ github.event.pull_request.number }} --body "**@${username}, invalid files found:** \`\`\`text ${invalid_files_cleaned} \`\`\` **Please fix the issues above!**"
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
