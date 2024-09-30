@@ -36,14 +36,8 @@ jobs:
 
     - name: Add PR Comment if Duplicates Found
       if: steps.run-duplicate-check.outcome == 'failure'
-      uses: marocchino/sticky-pull-request-comment@v2
-      with:
-        header: Duplicate Name Check
-        message: |
-          ❌ **Duplicate names detected in the following files:**
-
-          ```
-          ${{ steps.run-duplicate-check.outputs.stdout }}
-          ```
-      env:
+      run: |
+        # Format komentar dengan highlight dan tag user
+        gh pr comment ${{ github.event.pull_request.number }} --body "${{ steps.run-duplicate-check.outputs.stdout }}"
+        env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
