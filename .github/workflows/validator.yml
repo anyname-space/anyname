@@ -24,19 +24,17 @@ jobs:
         id: validate_name
         run: |
           cd validator
-          go run . > result.log  # Redirect stdout to a log file
-          echo "invalid_files=$(grep -oP 'invalidFiles=\K.*' result.log)" >> $GITHUB_ENV  # Capture invalid files
-        continue-on-error: true
+          go run .  # Output akan menangkap hasil validasi
 
       - name: Add label if invalid
-        if: steps.validate_name.outcome == 'failure'  # Tambahkan label jika validasi gagal
+        if: steps.validate_name.outcome == 'failure'
         uses: actions-ecosystem/action-add-labels@v1
         with:
           labels: |
             invalid
 
       - name: Remove invalid label if fixed
-        if: steps.validate_name.outcome == 'success'  # Hapus label jika validasi berhasil
+        if: steps.validate_name.outcome == 'success'
         uses: actions-ecosystem/action-remove-labels@v1
         with:
           labels: |
@@ -49,12 +47,7 @@ jobs:
           invalid_files="${{ steps.validate_name.outputs.validation_output }}"
           # Ambil username penulis pull request
           username="${{ github.event.pull_request.user.login }}"
-
-          # Membersihkan newline tambahan dan membuat format komentar
-          invalid_files_cleaned=$(echo "$invalid_files" | sed ':a;N;$!ba;s/\n/\\n/g; s/\\n$//; s/^\\n//;')  # Mengganti newline dengan karakter '\\n' untuk format
-
           # Format komentar dengan highlight dan tag user
-          gh pr comment ${{ github.event.pull_request.number }} --body "**@${username}, invalid files found:**\n\n\`\`\`text\n${invalid_files_cleaned}\n\`\`\`\n\n**Please fix the issues above!**"
+          gh pr comment ${{ github.event.pull_request.number }} --body "**@${username}, invalid files found:**\n\n\`\`\`text\n${invalid_files}\n\`\`\`\n\n**Please fix the issues above!**"
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-    
