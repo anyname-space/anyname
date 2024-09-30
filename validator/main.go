@@ -10,7 +10,7 @@ func main() {
 	// Validasi nama-nama JSON di folder data/names/
 	invalidFiles, err := ValidateNames()
 	if err != nil {
-		fmt.Println("Error:", err)
+		fmt.Println("Errorfff:", err)
 		os.Exit(1)
 	}
 
