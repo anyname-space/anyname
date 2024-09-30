@@ -1,0 +1,43 @@
+name: Check for Duplicate Names
+
+on:
+  pull_request:
+    types: [opened, synchronize]
+    paths:
+      - 'data/names/**/*.json'
+      
+permissions:
+  pull-requests: write
+
+jobs:
+  check-duplicates:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+
+    - name: Set up Go
+      uses: actions/setup-go@v4
+      with:
+        go-version: '1.23.1'
+
+    - name: Install dependencies
+      run: |
+        cd validator/validate-duplicate
+        go mod tidy
+
+    - name: Run duplicate check
+      id: run-duplicate-check
+      run: |
+        cd validator/validate-duplicate
+        go run .
+      continue-on-error: true
+
+    - name: Add PR Comment if Duplicates Found
+      if: steps.run-duplicate-check.outcome == 'failure'
+      run: |
+        # Format komentar dengan highlight dan tag user
+        gh pr comment ${{ github.event.pull_request.number }} --body "${{ steps.run-duplicate-check.outputs.duplicates }}"
+    env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
