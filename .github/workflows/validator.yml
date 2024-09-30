@@ -1,0 +1,58 @@
+name: Validate Names and Manage Labels
+
+on:
+  pull_request:
+    types: [opened, synchronize]
+
+permissions:
+  pull-requests: write
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Set up Go
+        uses: actions/setup-go@v2
+        with:
+          go-version: '1.23.1'
+
+      - name: Run validation
+        id: validate_name
+        run: |
+          cd validator
+          go run .
+        continue-on-error: true  # Agar job tidak berhenti jika validasi gagal
+
+      - name: Add label if invalid
+        if: steps.validate_name.outcome == 'failure'  # Tambahkan label jika validasi gagal
+        uses: actions-ecosystem/action-add-labels@v1
+        with:
+          labels: |
+            invalid
+
+      - name: Remove invalid label if fixed
+        if: steps.validate_name.outcome == 'success'  # Hapus label jika validasi berhasil
+        uses: actions-ecosystem/action-remove-labels@v1
+        with:
+          labels: |
+            invalid
+
+      - name: Comment on pull request if invalid files found
+        if: steps.validate_name.outcome == 'failure'
+        run: |
+          # Ambil output validasi
+          invalid_files="${{ steps.validate_name.outputs.validation_output }}"
+          # Ambil username penulis pull request
+          username="${{ github.event.pull_request.user.login }}"
+          
+          # Menghapus newline tambahan dan menyiapkan pesan komentar
+          invalid_files_cleaned=$(echo "$invalid_files" | tr -d '\n' | sed 's/^[ \t]*//;s/[ \t]*$//')  # Hapus newline dan spasi
+
+          # Format komentar dengan highlight dan tag user
+          gh pr comment ${{ github.event.pull_request.number }} --body "**@${username}, invalid files found:** \`\`\` ${invalid_files_cleaned} \`\`\` **Please fix the issues above!**"
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
