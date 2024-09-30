@@ -42,9 +42,10 @@ func main() {
 	err = ValidateCategory(categoryFilePath)
 	if err != nil {
 		fmt.Println("Error in category validation:", err)
+		os.Exit(1)
 
 	} else {
 		fmt.Println("Category file is valid.")
 	}
-	//os.Exit(1)
+
 }
