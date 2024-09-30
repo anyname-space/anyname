@@ -19,7 +19,7 @@ func main() {
 	if len(duplicates) > 0 {
 		// Kirim hasil duplikasi ke output GitHub Actions
 		fmt.Println("Duplicate names found ❌❌❌:")
-		result := "Duplicate names found ❌❌❌ "
+		result := "Duplicate names found ❌❌❌\n "
 		for name, files := range duplicates {
 			result += fmt.Sprintf("***Name:*** %s, ***Found in files:*** %v\n", name, files)
 		}
