@@ -24,7 +24,8 @@ jobs:
         id: validate_name
         run: |
           cd validator
-          go run .
+          output=$(go run .)
+          echo "::set-output name=validation_output::$output" 
         continue-on-error: true  # Agar job tidak berhenti jika validasi gagal
 
       - name: Add label if invalid
