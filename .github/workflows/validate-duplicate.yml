@@ -31,14 +31,13 @@ jobs:
       id: run-duplicate-check
       run: |
         cd validator/validate-duplicate
-        duplicate_msg=(go run .)
-        echo "result=duplicate_msg" >> $GITHUB_OUTPUT
+        go run .
       continue-on-error: true
 
     - name: Add PR Comment if Duplicates Found
       if: steps.run-duplicate-check.outcome == 'failure'
       run: |
         # Format komentar dengan highlight dan tag user
-        gh pr comment ${{ github.event.pull_request.number }} --body "test${{ steps.run-duplicate-check.outputs.result }}"
+        gh pr comment ${{ github.event.pull_request.number }} --body "test${{ steps.run-duplicate-check.outputs.stdout }}"
     env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
