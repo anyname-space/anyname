@@ -24,9 +24,7 @@ jobs:
         id: validate_name
         run: |
           cd validator
-          output=$(go run .)
-          echo "validation_output=$output" >> $GITHUB_ENV  # Simpan output ke environment variable
-          exit 1  # Keluarkan kode kesalahan jika ada kesalahan
+          go run .
         continue-on-error: true  # Agar job tidak berhenti jika validasi gagal
 
       - name: Add label if invalid
@@ -46,8 +44,11 @@ jobs:
       - name: Comment on pull request if invalid files found
         if: steps.validate_name.outcome == 'failure'  # Tambah komentar jika validasi gagal
         run: |
-          invalid_files="${{ env.validation_output }}"  # Ambil output validasi dari environment variable
+          # Ambil output validasi
+          invalid_files="${{ steps.validate_name.outputs.validation_output }}"
+          # Ambil username penulis pull request
           username="${{ github.event.pull_request.user.login }}"
-          gh pr comment ${{ github.event.pull_request.number }} --body "**@${username}, invalid files found:** ${invalid_files} **Please fix the issues above!**"
+          # Format komentar dengan highlight dan tag user dalam variabel multiline
+          gh pr comment ${{ github.event.pull_request.number }} --body "**@${username}, invalid files found:**\n\n\`\`\`text\n${invalid_files}\n\`\`\`\n\n**Please fix the issues above!** ${invalid_files}"
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
