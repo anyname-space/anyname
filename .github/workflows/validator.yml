@@ -49,6 +49,6 @@ jobs:
           # Ambil username penulis pull request
           username="${{ github.event.pull_request.user.login }}"
           # Format komentar dengan highlight dan tag user dalam variabel multiline
-          gh pr comment ${{ github.event.pull_request.number }} --body "**@${username}, invalid files found:**\n\n\`\`\`text\n${invalid_files}\n\`\`\`\n\n**Please fix the issues above!** ${invalid_files}"
+          gh pr comment ${{ github.event.pull_request.number }} --body "**@${username}, invalid files found:** ${invalid_files} **Please fix the issues above!** ${invalid_files}"
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
