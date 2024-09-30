@@ -27,7 +27,7 @@ func main() {
 		os.Exit(1) // Exit with non-zero status to indicate failure
 	} else {
 		fmt.Println("No duplicates found. ✅✅✅")
-		setGitHubOutput("duplicates", "No duplicates found. ✅✅✅")
+		setGitHubOutput("duplicates", "No duplicates found. ✅✅✅\n\n")
 		os.Exit(0) // Exit with zero status to indicate success
 	}
 }
