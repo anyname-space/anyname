@@ -39,5 +39,5 @@ jobs:
       run: |
         # Format komentar dengan highlight dan tag user
         gh pr comment ${{ github.event.pull_request.number }} --body "${{ steps.run-duplicate-check.outputs.stdout }}"
-        env:
+      env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
