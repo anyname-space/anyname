@@ -22,7 +22,7 @@ func main() {
 		}
 		// Output untuk GitHub Actions menangkap hasil
 		fmt.Printf("::set-output name=invalidFiles::%s\n", strings.Join(invalidFiles, ", "))
-		os.Exit(1)
+
 	} else {
 		fmt.Println("All name files are valid.")
 	}
@@ -32,8 +32,9 @@ func main() {
 	err = ValidateCategory(categoryFilePath)
 	if err != nil {
 		fmt.Println("Error in category validation:", err)
-		os.Exit(1)
+
 	} else {
 		fmt.Println("Category file is valid.")
 	}
+	os.Exit(1)
 }
