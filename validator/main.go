@@ -30,6 +30,7 @@ func main() {
 		for _, file := range invalidFiles {
 			fmt.Println(file)
 		}
+		os.Exit(1)
 		// Output untuk GitHub Actions menangkap hasil
 		//fmt.Printf("::set-output name=validation_output::%s", strings.Join(invalidFiles, ", "))
 	} else {
