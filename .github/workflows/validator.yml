@@ -23,7 +23,8 @@ jobs:
       - name: Run validation
         id: validate_name
         run: |
-          go run validator/validate_name.go
+          cd validator
+          go run .
         continue-on-error: true  # Agar job tidak berhenti jika validasi gagal
 
       - name: Add label if invalid
