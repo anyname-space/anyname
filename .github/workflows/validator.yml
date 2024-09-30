@@ -41,14 +41,29 @@ jobs:
           labels: |
             invalid
 
+      # - name: Comment on pull request if invalid files found
+      #   if: steps.validate_name.outcome == 'failure'  # Tambah komentar jika validasi gagal
+      #   run: |
+      #     # Ambil output validasi
+      #     invalid_files="${{ steps.validate_name.outputs.validation_output }}"
+      #     # Ambil username penulis pull request
+      #     username="${{ github.event.pull_request.user.login }}"
+      #     # Format komentar dengan highlight dan tag user dalam variabel multiline
+      #     gh pr comment ${{ github.event.pull_request.number }} --body "**@${username}, invalid files found:**\n\n\`\`\`text\n${invalid_files}\n\`\`\`\n\n**Please fix the issues above!** ${invalid_files}"
+      #   env:
+      #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: Comment on pull request if invalid files found
-        if: steps.validate_name.outcome == 'failure'  # Tambah komentar jika validasi gagal
+        if: steps.validate_name.outcome == 'failure'
         run: |
           # Ambil output validasi
           invalid_files="${{ steps.validate_name.outputs.validation_output }}"
           # Ambil username penulis pull request
           username="${{ github.event.pull_request.user.login }}"
-          # Format komentar dengan highlight dan tag user dalam variabel multiline
-          gh pr comment ${{ github.event.pull_request.number }} --body "**@${username}, invalid files found:**\n\n\`\`\`text\n${invalid_files}\n\`\`\`\n\n**Please fix the issues above!** ${invalid_files}"
+          
+          # Menghapus newline tambahan dan menyiapkan pesan komentar
+          invalid_files_cleaned=$(echo "$invalid_files" | tr -d '\n' | sed 's/^[ \t]*//;s/[ \t]*$//')  # Hapus newline dan spasi
+
+          # Format komentar dengan highlight dan tag user
+          gh pr comment ${{ github.event.pull_request.number }} --body "**@${username}, invalid files found:**\n\n\`\`\`text\n${invalid_files_cleaned}\n\`\`\`\n\n**Please fix the issues above!**"
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
