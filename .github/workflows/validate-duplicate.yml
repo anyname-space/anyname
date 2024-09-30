@@ -30,6 +30,7 @@ jobs:
     - name: Run duplicate check
       id: run-duplicate-check
       run: |
+        cd validator/validate-duplicate
         go run .
       continue-on-error: true
 
