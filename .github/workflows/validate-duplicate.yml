@@ -35,7 +35,7 @@ jobs:
       continue-on-error: true
 
     - name: Add PR Comment if Duplicates Found
-      if: failure()
+      if: steps.run-duplicate-check.outcome == 'failure'
       uses: marocchino/sticky-pull-request-comment@v2
       with:
         header: Duplicate Name Check
