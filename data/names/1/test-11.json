@@ -1,0 +1,11 @@
+{
+    "name": "test sbelas",
+    "name_type": "1",
+    "gender": "other",
+    "origin": "test",
+    "category": ["Popular"],
+    "contributor": {
+      "github_username": "maulanaaghnii"
+    },
+    "meaning": "test sbelas"
+  }

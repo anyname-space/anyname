@@ -21,21 +21,33 @@ jobs:
           go-version: '1.23.1'
 
       - name: Run validation
-        id: validate_names
+        id: validate_name
         run: |
           go run validator/validate_name.go
-        continue-on-error: true 
+        continue-on-error: true  # Agar job tidak berhenti jika validasi gagal
 
       - name: Add label if invalid
-        if: steps.validate_names.outcome == 'failure' # add label
+        if: steps.validate_name.outcome == 'failure'  # Tambahkan label jika validasi gagal
         uses: actions-ecosystem/action-add-labels@v1
         with:
           labels: |
             invalid
 
       - name: Remove invalid label if fixed
-        if: steps.validate_names.outcome == 'success' # remove label 
+        if: steps.validate_name.outcome == 'success'  # Hapus label jika validasi berhasil
         uses: actions-ecosystem/action-remove-labels@v1
         with:
           labels: |
             invalid
+
+      - name: Comment on pull request if invalid files found
+        if: steps.validate_name.outcome == 'failure'  # Tambah komentar jika validasi gagal
+        run: |
+          # Ambil output validasi
+          invalid_files="${{ steps.validate_name.outputs.validation_output }}"
+          # Ambil username penulis pull request
+          username="${{ github.event.pull_request.user.login }}"
+          # Format komentar dengan highlight dan tag user dalam variabel multiline
+          gh pr comment ${{ github.event.pull_request.number }} --body "**@${username}, invalid files found:**\n\n\`\`\`text\n${invalid_files}\n\`\`\`\n\n**Please fix the issues above!** ${invalid_files}"
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
