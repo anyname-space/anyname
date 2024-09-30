@@ -31,7 +31,9 @@ jobs:
       id: run-duplicate-check
       run: |
         cd validator/validate-duplicate
-        go run .
+        duplicate_msg=(go run .)
+        echo "$result"
+        echo "::set-output name=stdout::$result"
       continue-on-error: true
 
     - name: Add PR Comment if Duplicates Found
