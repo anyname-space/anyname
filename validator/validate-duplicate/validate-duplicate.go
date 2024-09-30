@@ -17,13 +17,18 @@ func main() {
 
 	duplicates := findDuplicates(namesMap)
 	if len(duplicates) > 0 {
+		// Kirim hasil duplikasi ke output GitHub Actions
 		fmt.Println("Duplicate names found ❌❌❌:")
+		var result string
 		for name, files := range duplicates {
-			fmt.Printf("Name: %s, Found in files: %v\n", name, files)
+			result += fmt.Sprintf("Name: %s, Found in files: %v\n", name, files)
 		}
+		setGitHubOutput("duplicates", result)
 		os.Exit(1) // Exit with non-zero status to indicate failure
 	} else {
 		fmt.Println("No duplicates found. ✅✅✅")
+		setGitHubOutput("duplicates", "No duplicates found.")
+		os.Exit(0) // Exit with zero status to indicate success
 	}
 }
 
@@ -65,4 +70,21 @@ func findDuplicates(namesMap map[string][]string) map[string][]string {
 	}
 
 	return duplicates
+}
+
+// setGitHubOutput writes output to GITHUB_OUTPUT to pass data between steps
+func setGitHubOutput(name, value string) {
+	output := fmt.Sprintf("%s=%s\n", name, value)
+	fmt.Printf("Setting GitHub output: %s", output)
+	// Write to $GITHUB_OUTPUT for GitHub Actions
+	f, err := os.OpenFile(os.Getenv("GITHUB_OUTPUT"), os.O_APPEND|os.O_WRONLY, 0600)
+	if err != nil {
+		fmt.Printf("Error opening GITHUB_OUTPUT: %v", err)
+		return
+	}
+	defer f.Close()
+
+	if _, err := f.WriteString(output); err != nil {
+		fmt.Printf("Error writing to GITHUB_OUTPUT: %v", err)
+	}
 }
