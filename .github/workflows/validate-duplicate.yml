@@ -30,7 +30,7 @@ jobs:
     - name: Run duplicate check
       id: run-duplicate-check
       run: |
-        go run validator/validate-duplicate/validate-duplicate.go
+        go run .
       continue-on-error: true
 
     - name: Add PR Comment if Duplicates Found
