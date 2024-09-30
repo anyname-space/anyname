@@ -3,7 +3,6 @@ package main
 import (
 	"fmt"
 	"os"
-	"strings"
 )
 
 func main() {
@@ -32,10 +31,10 @@ func main() {
 			fmt.Println(file)
 		}
 		// Output untuk GitHub Actions menangkap hasil
-		fmt.Printf("::set-output name=validation_output::%s\n", strings.Join(invalidFiles, ", "))
+		//fmt.Printf("::set-output name=validation_output::%s", strings.Join(invalidFiles, ", "))
 	} else {
 		fmt.Println("All name files are valid ✅✅✅.")
-		fmt.Printf("::set-output name=validation_output::\n") // Pastikan output kosong jika valid
+		//fmt.Printf("::set-output name=validation_output::") // Pastikan output kosong jika valid
 	}
 
 	// Validasi kategori JSON di data/categories.json
