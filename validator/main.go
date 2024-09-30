@@ -21,8 +21,7 @@ func main() {
 			fmt.Println(file)
 		}
 		// Output untuk GitHub Actions menangkap hasil
-		fmt.Printf("::set-output name=invalidFiles::%s\n", strings.Join(invalidFiles, ", "))
-		fmt.Println(invalidFiles)
+		fmt.Printf("::set-output name=invalidFiles::%s", strings.Join(invalidFiles, ", "))
 
 	} else {
 		fmt.Println("All name files are valid.")
