@@ -1,0 +1,14 @@
+{
+  "name": "Pragos",
+  "name_type": "1",
+  "gender": "male",
+  "origin": "India",
+  "category": [
+    "Traditional",
+    "Modern"
+  ],
+  "contributor": {
+    "github_username": "pragos01"
+  },
+  "meaning": "Sorrows"
+}
