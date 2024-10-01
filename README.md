@@ -1,4 +1,4 @@
-![anyname-gif](https://github.com/anyname-space/anyname/blob/main/assets/anyname-13.gif)
+![anyname-gif](src/assets/anyname-13.gif)
 
 # anyname
 
