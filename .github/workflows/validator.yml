@@ -25,7 +25,6 @@ jobs:
         run: |
           cd validator
           go run .
-        continue-on-error: true  # Agar job tidak berhenti jika validasi gagal
 
       - name: Add label if invalid
         if: steps.validate_name.outcome == 'failure'  # Tambahkan label jika validasi gagal
