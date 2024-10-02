@@ -1,0 +1,14 @@
+{
+    "name": "Soren",
+    "name_type": "1",
+    "gender": "male",
+    "origin": "Danish",
+    "category": [
+        "Unique",
+        "Strong"
+    ],
+    "contributor": {
+        "github_username": "maulanaaghnii"
+    },
+    "meaning": "Stern"
+}

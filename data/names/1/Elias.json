@@ -1,0 +1,14 @@
+{
+    "name": "Elias",
+    "name_type": "1",
+    "gender": "male",
+    "origin": "Greek",
+    "category": [
+        "Religious",
+        "Traditional"
+    ],
+    "contributor": {
+        "github_username": "maulanaaghnii"
+    },
+    "meaning": "The Lord is my God"
+}

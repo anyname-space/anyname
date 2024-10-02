@@ -1,0 +1,14 @@
+{
+    "name": "Alina",
+    "name_type": "2",
+    "gender": "female",
+    "origin": "Slavic",
+    "category": [
+        "Elegant",
+        "Popular"
+    ],
+    "contributor": {
+        "github_username": "maulanaaghnii"
+    },
+    "meaning": "Bright, beautiful"
+}
