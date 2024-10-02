@@ -30,7 +30,7 @@ func ValidateCategory(filePath string) error {
 
 	// Check if only valid keys are present
 	if len(rawJSON) > 1 || (len(rawJSON) == 1 && rawJSON[validCategoryKey] == nil) {
-		return errors.New("Invalid JSON structure: only the 'category' key is allowed")
+		return errors.New("invalid JSON structure: only the 'category' key is allowed")
 	}
 
 	// Unmarshal the valid category key into the struct
@@ -42,7 +42,7 @@ func ValidateCategory(filePath string) error {
 			}
 		}
 	} else {
-		return errors.New("Invalid format for 'category'")
+		return errors.New("invalid format for 'category'")
 	}
 
 	// Check for duplicates
@@ -50,7 +50,7 @@ func ValidateCategory(filePath string) error {
 	for _, cat := range category.Category {
 		cat = strings.TrimSpace(cat)
 		if categoryMap[cat] {
-			return fmt.Errorf("Duplicate category found: %s", cat)
+			return fmt.Errorf("duplicate category found: %s", cat)
 		}
 		categoryMap[cat] = true
 	}
