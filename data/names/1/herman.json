@@ -1,0 +1,14 @@
+{
+  "name": "Herman",
+  "name_type": "1",
+  "gender": "male",
+  "origin": "Irish",
+  "category": [
+    "Short",
+    "Trendy"
+  ],
+  "contributor": {
+    "github_username": "maulanaaghnii"
+  },
+  "meaning": "Fair or white"
+}
