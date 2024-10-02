@@ -1,0 +1,14 @@
+{
+  "name": "Maximus",
+  "name_type": "1",
+  "gender": "male",
+  "origin": "India",
+  "category": [
+    "Mythical",
+    "Modern"
+  ],
+  "contributor": {
+    "github_username": "maxhack"
+  },
+  "meaning": "Prince"
+}
