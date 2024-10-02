@@ -1,0 +1,11 @@
+{
+"name": "Nia",
+"name_type": "2",
+"gender": "female",
+"origin": "Swahili",
+"category": ["Short", "Meaningful"],
+"contributor": {
+    "github_username": "maulanaaghnii"
+},
+"meaning": "Purpose"
+}
