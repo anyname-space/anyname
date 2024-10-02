@@ -1,0 +1,14 @@
+{
+    "name": "Rina",
+    "name_type": "2",
+    "gender": "female",
+    "origin": "Japanese",
+    "category": [
+        "Short",
+        "Cute"
+    ],
+    "contributor": {
+        "github_username": "maulanaaghnii"
+    },
+    "meaning": "Jasmine, village"
+}

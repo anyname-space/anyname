@@ -1,0 +1,14 @@
+{
+    "name": "Sergio",
+    "name_type": "1",
+    "gender": "male",
+    "origin": "Latin",
+    "category": [
+        "Classic",
+        "Strong"
+    ],
+    "contributor": {
+        "github_username": "maulanaaghnii"
+    },
+    "meaning": "Servant, attendant"
+}

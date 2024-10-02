@@ -1,0 +1,14 @@
+{
+    "name": "Jasper",
+    "name_type": "1",
+    "gender": "male",
+    "origin": "Persian",
+    "category": [
+        "Cultural",
+        "Unique"
+    ],
+    "contributor": {
+        "github_username": "maulanaaghnii"
+    },
+    "meaning": "Treasurer"
+}

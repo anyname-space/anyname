@@ -1,0 +1,14 @@
+{
+    "name": "Axel",
+    "name_type": "1",
+    "gender": "male",
+    "origin": "Scandinavian",
+    "category": [
+        "Strong",
+        "Classic"
+    ],
+    "contributor": {
+        "github_username": "maulanaaghnii"
+    },
+    "meaning": "Father of peace"
+}

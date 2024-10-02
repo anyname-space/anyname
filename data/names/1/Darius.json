@@ -1,0 +1,14 @@
+{
+    "name": "Darius",
+    "name_type": "1",
+    "gender": "male",
+    "origin": "Persian",
+    "category": [
+        "Historical",
+        "Strong"
+    ],
+    "contributor": {
+        "github_username": "maulanaaghnii"
+    },
+    "meaning": "He who holds firm to good"
+}

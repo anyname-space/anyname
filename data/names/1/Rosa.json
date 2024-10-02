@@ -1,0 +1,14 @@
+{
+    "name": "Rosa",
+    "name_type": "2",
+    "gender": "female",
+    "origin": "Latin",
+    "category": [
+        "Nature",
+        "Classic"
+    ],
+    "contributor": {
+        "github_username": "maulanaaghnii"
+    },
+    "meaning": "Rose"
+}

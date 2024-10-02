@@ -1,0 +1,14 @@
+{
+    "name": "Milo",
+    "name_type": "1",
+    "gender": "male",
+    "origin": "German",
+    "category": [
+        "Short",
+        "Strong"
+    ],
+    "contributor": {
+        "github_username": "maulanaaghnii"
+    },
+    "meaning": "Merciful"
+}

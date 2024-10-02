@@ -1,0 +1,14 @@
+{
+    "name": "Viktor",
+    "name_type": "1",
+    "gender": "male",
+    "origin": "Slavic",
+    "category": [
+        "Classic",
+        "Strong"
+    ],
+    "contributor": {
+        "github_username": "maulanaaghnii"
+    },
+    "meaning": "Conqueror"
+}
