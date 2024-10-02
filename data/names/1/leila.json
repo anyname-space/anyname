@@ -1,0 +1,11 @@
+{
+"name": "Leila",
+"name_type": "1",
+"gender": "female",
+"origin": "Persian",
+"category": ["Elegant", "Historical"],
+"contributor": {
+    "github_username": "maulanaaghnii"
+},
+"meaning": "Night"
+}

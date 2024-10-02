@@ -1,0 +1,11 @@
+{
+"name": "Diego",
+"name_type": "1",
+"gender": "male",
+"origin": "Spanish",
+"category": ["Traditional", "Unique"],
+"contributor": {
+    "github_username": "maulanaaghnii"
+},
+"meaning": "Supplanter"
+}

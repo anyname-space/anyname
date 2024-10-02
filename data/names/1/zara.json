@@ -1,0 +1,11 @@
+{
+"name": "Zara",
+"name_type": "1",
+"gender": "female",
+"origin": "Arabic",
+"category": ["Modern", "Stylish"],
+"contributor": {
+    "github_username": "maulanaaghnii"
+},
+"meaning": "Blooming flower"
+}

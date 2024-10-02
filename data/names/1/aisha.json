@@ -1,0 +1,11 @@
+{
+"name": "Aisha",
+"name_type": "1",
+"gender": "female",
+"origin": "Arabic",
+"category": ["Classic", "Religious"],
+"contributor": {
+    "github_username": "maulanaaghnii"
+},
+"meaning": "Alive, prosperous"
+}

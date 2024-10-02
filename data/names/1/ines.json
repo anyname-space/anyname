@@ -1,0 +1,11 @@
+{
+"name": "Ines",
+"name_type": "1",
+"gender": "female",
+"origin": "Portuguese",
+"category": ["Traditional", "Simple"],
+"contributor": {
+    "github_username": "maulanaaghnii"
+},
+"meaning": "Pure, holy"
+}
