@@ -1,0 +1,11 @@
+{
+"name": "Amara",
+"name_type": "1",
+"gender": "female",
+"origin": "Igbo",
+"category": ["Exotic", "Meaningful"],
+"contributor": {
+    "github_username": "maulanaaghnii"
+},
+"meaning": "Grace"
+}

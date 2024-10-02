@@ -1,0 +1,11 @@
+{
+"name": "Isla",
+"name_type": "1",
+"gender": "female",
+"origin": "Scottish",
+"category": ["Nature", "Popular"],
+"contributor": {
+    "github_username": "maulanaaghnii"
+},
+"meaning": "Island"
+}

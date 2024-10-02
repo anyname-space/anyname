@@ -1,0 +1,11 @@
+{
+"name": "Elena",
+"name_type": "1",
+"gender": "female",
+"origin": "Greek",
+"category": ["Elegant", "Popular"],
+"contributor": {
+    "github_username": "maulanaaghnii"
+},
+"meaning": "Shining light"
+}

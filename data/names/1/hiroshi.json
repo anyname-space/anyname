@@ -1,0 +1,11 @@
+{
+"name": "Hiroshi",
+"name_type": "2",
+"gender": "male",
+"origin": "Japanese",
+"category": ["Cultural", "Modern"],
+"contributor": {
+    "github_username": "maulanaaghnii"
+},
+"meaning": "Generous"
+}

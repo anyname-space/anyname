@@ -1,0 +1,11 @@
+{
+"name": "Nikolai",
+"name_type": "2",
+"gender": "male",
+"origin": "Russian",
+"category": ["Classic", "Strong"],
+"contributor": {
+    "github_username": "maulanaaghnii"
+},
+"meaning": "Victory of the people"
+}

@@ -1,0 +1,11 @@
+{
+"name": "Dimitri",
+"name_type": "1",
+"gender": "male",
+"origin": "Russian",
+"category": ["Strong", "Classic"],
+"contributor": {
+    "github_username": "maulanaaghnii"
+},
+"meaning": "Follower of Demeter"
+}
