@@ -1,0 +1,14 @@
+{
+    "name": "Zuri",
+    "name_type": "1",
+    "gender": "female",
+    "origin": "Swahili",
+    "category": [
+        "Unique",
+        "Beautiful"
+    ],
+    "contributor": {
+        "github_username": "maulanaaghnii"
+    },
+    "meaning": "Beautiful"
+}
