@@ -1,0 +1,14 @@
+{
+    "name": "Nina",
+    "name_type": "2",
+    "gender": "female",
+    "origin": "Hebrew",
+    "category": [
+        "Short",
+        "Simple"
+    ],
+    "contributor": {
+        "github_username": "maulanaaghnii"
+    },
+    "meaning": "Grace"
+}

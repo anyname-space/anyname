@@ -1,0 +1,14 @@
+{
+    "name": "Tariq",
+    "name_type": "1",
+    "gender": "male",
+    "origin": "Arabic",
+    "category": [
+        "Religious",
+        "Strong"
+    ],
+    "contributor": {
+        "github_username": "maulanaaghnii"
+    },
+    "meaning": "Morning star"
+}

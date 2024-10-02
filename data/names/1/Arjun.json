@@ -1,0 +1,14 @@
+{
+    "name": "Arjun",
+    "name_type": "1",
+    "gender": "male",
+    "origin": "Sanskrit",
+    "category": [
+        "Cultural",
+        "Strong"
+    ],
+    "contributor": {
+        "github_username": "maulanaaghnii"
+    },
+    "meaning": "Bright, shining"
+}

@@ -1,0 +1,14 @@
+{
+    "name": "Laila",
+    "name_type": "2",
+    "gender": "female",
+    "origin": "Arabic",
+    "category": [
+        "Elegant",
+        "Popular"
+    ],
+    "contributor": {
+        "github_username": "maulanaaghnii"
+    },
+    "meaning": "Night beauty"
+}

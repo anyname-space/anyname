@@ -1,0 +1,14 @@
+{
+    "name": "Ivo",
+    "name_type": "1",
+    "gender": "male",
+    "origin": "Germanic",
+    "category": [
+        "Short",
+        "Strong"
+    ],
+    "contributor": {
+        "github_username": "maulanaaghnii"
+    },
+    "meaning": "Yew wood"
+}

@@ -1,0 +1,14 @@
+{
+    "name": "Lyra",
+    "name_type": "2",
+    "gender": "female",
+    "origin": "Greek",
+    "category": [
+        "Nature",
+        "Elegant"
+    ],
+    "contributor": {
+        "github_username": "maulanaaghnii"
+    },
+    "meaning": "Lyre, constellation"
+}

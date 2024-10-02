@@ -1,0 +1,14 @@
+{
+    "name": "Levi",
+    "name_type": "1",
+    "gender": "male",
+    "origin": "Hebrew",
+    "category": [
+        "Biblical",
+        "Modern"
+    ],
+    "contributor": {
+        "github_username": "maulanaaghnii"
+    },
+    "meaning": "Joined, attached"
+}

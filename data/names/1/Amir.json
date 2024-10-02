@@ -1,0 +1,14 @@
+{
+    "name": "Amir",
+    "name_type": "1",
+    "gender": "male",
+    "origin": "Arabic",
+    "category": [
+        "Religious",
+        "Royal"
+    ],
+    "contributor": {
+        "github_username": "maulanaaghnii"
+    },
+    "meaning": "Prince, commander"
+}

@@ -1,0 +1,14 @@
+{
+    "name": "Vera",
+    "name_type": "2",
+    "gender": "female",
+    "origin": "Russian",
+    "category": [
+        "Classic",
+        "Beautiful"
+    ],
+    "contributor": {
+        "github_username": "maulanaaghnii"
+    },
+    "meaning": "Faith"
+}
