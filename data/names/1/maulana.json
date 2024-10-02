@@ -1,17 +1,13 @@
 {
-    "name": "Zuri maulana",
-    "name_type": "2",
+    "name": "maulana",
+    "name_type": "1",
     "gender": "female",
-    "origin": "Swahili",
+    "origin": "indonesia",
     "category": [
-        "Unique",
-        "Beautiful"
+        "popular"
     ],
     "contributor": {
         "github_username": "maulanaaghnii"
     },
-    "c2ontributor": {
-        "github_username": "maulanaaghnii"
-    },
-    "meaning": "Beautiful"
+    "meaning": "null"
 }
