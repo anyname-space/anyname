@@ -1,0 +1,14 @@
+{
+    "name": "Oscar",
+    "name_type": "1",
+    "gender": "male",
+    "origin": "Irish",
+    "category": [
+        "Strong",
+        "Classic"
+    ],
+    "contributor": {
+        "github_username": "maulanaaghnii"
+    },
+    "meaning": "God spear, deer-lover"
+}

@@ -1,0 +1,14 @@
+{
+    "name": "Anya",
+    "name_type": "1",
+    "gender": "female",
+    "origin": "Russian",
+    "category": [
+        "Classic",
+        "Simple"
+    ],
+    "contributor": {
+        "github_username": "maulanaaghnii"
+    },
+    "meaning": "Grace"
+}

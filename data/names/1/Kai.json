@@ -1,0 +1,14 @@
+{
+    "name": "Kai",
+    "name_type": "1",
+    "gender": "male",
+    "origin": "Hawaiian",
+    "category": [
+        "Nature",
+        "Short"
+    ],
+    "contributor": {
+        "github_username": "maulanaaghnii"
+    },
+    "meaning": "Sea"
+}

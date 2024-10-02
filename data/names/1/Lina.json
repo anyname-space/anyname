@@ -1,0 +1,14 @@
+{
+    "name": "Lina",
+    "name_type": "2",
+    "gender": "female",
+    "origin": "Arabic",
+    "category": [
+        "Short",
+        "Elegant"
+    ],
+    "contributor": {
+        "github_username": "maulanaaghnii"
+    },
+    "meaning": "Tender"
+}

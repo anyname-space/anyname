@@ -1,0 +1,14 @@
+{
+    "name": "Sofia",
+    "name_type": "2",
+    "gender": "female",
+    "origin": "Greek",
+    "category": [
+        "Classic",
+        "Popular"
+    ],
+    "contributor": {
+        "github_username": "maulanaaghnii"
+    },
+    "meaning": "Wisdom"
+}

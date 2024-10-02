@@ -1,0 +1,14 @@
+{
+    "name": "Ravi",
+    "name_type": "1",
+    "gender": "male",
+    "origin": "Sanskrit",
+    "category": [
+        "Cultural",
+        "Nature"
+    ],
+    "contributor": {
+        "github_username": "maulanaaghnii"
+    },
+    "meaning": "Sun"
+}

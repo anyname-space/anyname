@@ -1,0 +1,14 @@
+{
+    "name": "Nils",
+    "name_type": "1",
+    "gender": "male",
+    "origin": "Scandinavian",
+    "category": [
+        "Traditional",
+        "Short"
+    ],
+    "contributor": {
+        "github_username": "maulanaaghnii"
+    },
+    "meaning": "Victory of the people"
+}

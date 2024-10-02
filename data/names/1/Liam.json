@@ -1,0 +1,14 @@
+{
+    "name": "Liam",
+    "name_type": "2",
+    "gender": "male",
+    "origin": "Irish",
+    "category": [
+        "Strong",
+        "Modern"
+    ],
+    "contributor": {
+        "github_username": "maulanaaghnii"
+    },
+    "meaning": "Resolute protection"
+}

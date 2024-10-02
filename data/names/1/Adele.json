@@ -1,0 +1,14 @@
+{
+    "name": "Adele",
+    "name_type": "2",
+    "gender": "female",
+    "origin": "German",
+    "category": [
+        "Classic",
+        "Elegant"
+    ],
+    "contributor": {
+        "github_username": "maulanaaghnii"
+    },
+    "meaning": "Noble"
+}

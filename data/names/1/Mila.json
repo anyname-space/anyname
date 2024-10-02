@@ -1,0 +1,14 @@
+{
+    "name": "Mila",
+    "name_type": "2",
+    "gender": "female",
+    "origin": "Slavic",
+    "category": [
+        "Short",
+        "Beautiful"
+    ],
+    "contributor": {
+        "github_username": "maulanaaghnii"
+    },
+    "meaning": "Gracious, dear"
+}
