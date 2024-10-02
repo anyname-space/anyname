@@ -3,7 +3,6 @@ package main
 import (
 	"fmt"
 	"os"
-	"strings"
 )
 
 func main() {
@@ -19,7 +18,7 @@ func main() {
 			fmt.Println(file)
 		}
 
-		fmt.Printf("::set-output name=validation_output::%s", strings.Join(invalidFiles, ", "))
+		//fmt.Printf("::set-output name=validation_output::%s", strings.Join(invalidFiles, ", "))
 		os.Exit(1)
 	} else {
 		fmt.Println("All name files are valid ✅✅✅.")
