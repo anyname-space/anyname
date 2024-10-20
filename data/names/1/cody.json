@@ -1,0 +1,13 @@
+{
+    "name": "Cody",
+    "name_type": "1",
+    "gender": "male",
+    "origin": "Irish",
+    "category": [
+        "Helpful"
+    ],
+    "contributor": {
+        "github_username": "codymathews1995"
+    },
+    "meaning": "Helpful"
+}
