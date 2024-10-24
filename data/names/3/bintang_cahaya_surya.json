@@ -1,0 +1,11 @@
+{
+  "name": "Bintang Cahaya Surya",
+  "name_type": "3",
+  "gender": "male",
+  "origin": "Indonesia",
+  "category": ["Popular"],
+  "contributor": {
+    "github_username": "arubaya"
+  },
+  "meaning": "Star that shines like the sun"
+}
