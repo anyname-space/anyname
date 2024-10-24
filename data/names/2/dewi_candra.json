@@ -1,0 +1,11 @@
+{
+  "name": "Dewi Candra",
+  "name_type": "2",
+  "gender": "female",
+  "origin": "Indonesia",
+  "category": ["Traditional", "Popular"],
+  "contributor": {
+    "github_username": "arubaya"
+  },
+  "meaning": "Goddess of the moon"
+}
